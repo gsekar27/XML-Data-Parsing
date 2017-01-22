@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <title>View Aircraft</title>
+  <meta charset="UTF-8">
+  <!--
+  <BODY>
+  This is for USC disclaimer
+</BODY>
+-->
+<script type = "text/javascript">
+function loadXML() 
+{ 
+    var xmlDoc, url;
+    url = document.getElementById("url").value;
+    
+    if (window.XMLHttpRequest)
+        {// code for IE7+, Firefox, Chrome, Opera, Safari
+         xmlhttp = new XMLHttpRequest();   
+        }
+    else 
+        {// code for IE6, IE5
+          xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");  
+        }
+      xmlhttp.open("GET",url,false);
+      xmlhttp.send();
+      xmlDoc = xmlhttp.responseXML;
+      // return xmlDoc;   
+
+      var x = xmlDoc.getElementsByTagName("Header");
+      var top = x[0].getElementsByTagName("Data")[0].innerHTML;
+      
+      var myTable = "";
+
+      myTable = myTable + "<table border='2px'>" + top + "</table>";
+
+      document.write(myTable);
+}
+
+          
+        </script>
+</head>
+    
+    <body data-pinterest-extension-installed="cr1.39.2">
+        <h1>View the Commercial Aircrafts </h1>
+        Enter boeing.xml or airbus.xml and click on Submit
+        <form name="myform" method="POST" id="location">
+          <input type="text" name="FileURL" id="url">
+          <br>
+          <input type="button" name="submit" value="Submit Query" onclick="loadXML()">
+        </form>
+
+    </body>
+</html>
